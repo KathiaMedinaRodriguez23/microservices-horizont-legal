@@ -28,7 +28,7 @@ const verifyTokenForgotPassword = async(req, res) => {
     if (decoded.action !== "forgot-password") {
       return res.status(400).json({"status": false, "message": "Invalid token action"});
     }
-    res.status(200).json({"status": true, "message": "Token is valid", "data": decoded});
+    res.status(200).json({"status": true, "message": "Token is valid", "data": decoded.email});
   } catch (error) {
     console.error("[verifyTokenForgotPassword]:", error);
     res.status(500).json({"status": false, "message": "Internal server error"});

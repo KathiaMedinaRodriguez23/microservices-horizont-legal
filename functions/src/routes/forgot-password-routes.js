@@ -1,9 +1,10 @@
 const express = require("express");
-const {forgotPassword} = require("../controllers/forgot-password-controller");
+const {sendUrlForgotPassword, verifyTokenForgotPassword} = require("../controllers/forgot-password-controller");
 
 const router = express.Router();
 
-router.post("/forgot-password", forgotPassword);
+router.post("/send-url-forgot-password", sendUrlForgotPassword);
+router.get("/verify-token", verifyTokenForgotPassword);
 
 module.exports = {
   routes: router,

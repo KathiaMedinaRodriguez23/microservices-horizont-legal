@@ -788,17 +788,6 @@ function esquemaEamilReprogramacionDeCita(fecha, hora, idCaso) {
                     <p style="font-size: 16px; margin-bottom: 20px;">
                         Por favor, confirme su disponibilidad para la nueva fecha y hora respondiendo a este correo.
                     </p>
-                    <a href="mailto:reprogramaciones@horizontelegal.com" style="display: inline-block; 
-                        background-color: #6c2bd9; 
-                        color: white; 
-                        padding: 12px 30px; 
-                        text-decoration: none;
-                        border-radius: 25px;
-                        font-weight: 600;
-                        font-size: 16px;
-                        margin-top: 10px;">
-                        <i class="fas fa-paper-plane" style="margin-right: 8px;"></i> Confirmar Disponibilidad
-                    </a>
                     <p style="font-size: 14px; color: #718096; margin-top: 15px; margin-bottom: 0;">
                         Si no puede asistir, contáctenos inmediatamente para buscar una nueva fecha
                     </p>

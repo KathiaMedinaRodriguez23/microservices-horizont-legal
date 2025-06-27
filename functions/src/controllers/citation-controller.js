@@ -1,7 +1,7 @@
 const {resendSendEmail} = require('../utils/resend-send-email');
 const {
   esquemaEmailCitacionAudiencia,
-  esquemaEmailRecordatorioCitacionAudiencia, squemaEmailHtmlForgotPassword
+  esquemaEmailRecordatorioCitacionAudiencia, esquemaEamilReprogramacionDeCita
 } = require("../utils/html-send");
 const dotenv = require("dotenv");
 dotenv.config();
@@ -28,7 +28,19 @@ const sendReminderCitationEmail = async (req, res) => {
   }
 }
 
+const sendReprogramacionDeCitaEmail = async (req, res) => {
+  try {
+    const {fecha, hora, idCaso, email} = req.body;
+    await resendSendEmail(email, esquemaEamilReprogramacionDeCita(fecha, hora, idCaso), "HORITZONTE LEGAL: REPROGRAMACION DE CITA");
+    res.status(200).json({"status": true, "message": "Mensaje enviado con éxito"});
+  } catch (e) {
+    console.error("[sendReprogramacionDeCitaEmail]:", e);
+    res.status(500).json({"status": false, "message": "Internal server error"});
+  }
+}
+
 module.exports = {
   sendCitationEmail,
-  sendReminderCitationEmail
+  sendReminderCitationEmail,
+  sendReprogramacionDeCitaEmail
 }

@@ -566,8 +566,297 @@ function esquemaEmailRecordatorioCitacionAudiencia(fecha, hora, idCaso) {
     </html>`
 }
 
+/**
+ * Genera el esquema HTML para un correo de reprogramacion de Cita.
+ * @param fecha
+ * @param hora
+ * @param idCaso
+ * @returns {string}
+ */
+function esquemaEamilReprogramacionDeCita(fecha, hora, idCaso) {
+  return `
+    <!DOCTYPE html>
+    <html lang="es">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title>Reprogramación de Cita Legal</title>
+        <style>
+            body {
+                margin: 0;
+                padding: 0;
+                background-color: #f8f9fa;
+                font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+            }
+            .container {
+                max-width: 650px;
+                margin: 0 auto;
+                background-color: #ffffff;
+                box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+                border-top: 5px solid #7e3af2;
+            }
+            .header {
+                background: linear-gradient(135deg, #6c2bd9, #7e3af2);
+                padding: 30px;
+                text-align: center;
+                position: relative;
+            }
+            .header h1 {
+                color: #ffffff;
+                margin: 0;
+                font-size: 28px;
+                font-weight: 400;
+                letter-spacing: 1px;
+            }
+            .reschedule-label {
+                position: absolute;
+                top: 15px;
+                right: 15px;
+                background-color: #e9d8fd;
+                color: #553c9a;
+                padding: 5px 15px;
+                border-radius: 20px;
+                font-size: 14px;
+                font-weight: 600;
+            }
+            .content {
+                padding: 40px 30px;
+                font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+                line-height: 1.7;
+                color: #2d3748;
+            }
+            .saludo {
+                border-left: 4px solid #7e3af2;
+                padding-left: 20px;
+                margin-bottom: 30px;
+            }
+            .saludo p {
+                font-size: 18px;
+                margin: 0;
+                color: #1a365d;
+                font-weight: 500;
+            }
+            .reschedule-note {
+                background-color: #f5f3ff;
+                border: 1px solid #d6bcfa;
+                border-radius: 8px;
+                padding: 20px;
+                margin: 20px 0;
+                text-align: center;
+                font-size: 17px;
+                color: #553c9a;
+                font-weight: 500;
+            }
+            .info-grid {
+                display: grid;
+                grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+                gap: 15px;
+                margin: 25px 0;
+            }
+            .info-item {
+                background-color: #f8fafc;
+                border: 1px solid #e2e8f0;
+                border-radius: 8px;
+                padding: 20px;
+                text-align: center;
+            }
+            .info-label {
+                font-size: 14px;
+                color: #718096;
+                margin-bottom: 8px;
+                font-weight: 500;
+            }
+            .info-value {
+                font-size: 18px;
+                font-weight: 600;
+                color: #6c2bd9;
+            }
+            .case-id {
+                background-color: #6c2bd9;
+                color: white;
+                padding: 15px;
+                border-radius: 8px;
+                text-align: center;
+                font-weight: 600;
+                letter-spacing: 1px;
+                margin: 20px 0;
+                font-size: 18px;
+                box-shadow: 0 3px 6px rgba(0,0,0,0.1);
+            }
+            .new-details {
+                background-color: #f0f4ff;
+                border-left: 4px solid #5a67d8;
+                padding: 20px;
+                margin: 30px 0;
+                border-radius: 0 8px 8px 0;
+            }
+            .confirmation {
+                background-color: #f0fff4;
+                border-left: 4px solid #48bb78;
+                padding: 20px;
+                margin: 30px 0;
+                border-radius: 0 8px 8px 0;
+                text-align: center;
+            }
+            .signature {
+                margin-top: 30px;
+                padding-top: 25px;
+                border-top: 2px solid #e2e8f0;
+            }
+            .footer {
+                background-color: #edf2f7;
+                padding: 25px 30px;
+                text-align: center;
+                border-top: 1px solid #e2e8f0;
+                font-size: 13px;
+                color: #718096;
+            }
+            @media (max-width: 600px) {
+                .info-grid {
+                    grid-template-columns: 1fr;
+                }
+                .content {
+                    padding: 30px 20px;
+                }
+                .header {
+                    padding: 25px 15px;
+                }
+            }
+        </style>
+    </head>
+    <body>
+        <div class="container">
+            <!-- Header -->
+            <div class="header">
+                <div class="reschedule-label">REPROGRAMACIÓN</div>
+                <h1>Reprogramación de Cita Legal</h1>
+            </div>
+            
+            <!-- Content -->
+            <div class="content">
+                <div class="saludo">
+                    <p>Estimado(a),</p>
+                </div>
+                
+                <p style="font-size: 16px; margin-bottom: 25px; text-align: justify;">
+                    Le informamos que su cita legal ha sido reprogramada debido a circunstancias imprevistas. 
+                    Por favor, tome nota de los nuevos detalles de su audiencia a continuación.
+                </p>
+                
+                <!-- Reschedule Note -->
+                <div class="reschedule-note">
+                    <i class="fas fa-calendar-alt" style="margin-right: 8px;"></i>
+                    Su audiencia ha sido reprogramada para el <strong>${fecha}</strong> a las <strong>${hora}</strong>
+                </div>
+                
+                <!-- Case ID -->
+                <div class="case-id">
+                    ID DEL CASO: ${idCaso}
+                </div>
+                
+                <!-- New Details -->
+                <div class="new-details">
+                    <p style="font-size: 17px; margin: 0 0 15px 0; font-weight: 600; color: #434190;">
+                        <i class="fas fa-info-circle" style="margin-right: 10px;"></i> NUEVOS DETALLES DE LA AUDIENCIA
+                    </p>
+                    
+                    <!-- Information Grid -->
+                    <div class="info-grid">
+                        <div class="info-item">
+                            <div class="info-label">NUEVA FECHA</div>
+                            <div class="info-value">${fecha}</div>
+                        </div>
+                        
+                        <div class="info-item">
+                            <div class="info-label">NUEVA HORA</div>
+                            <div class="info-value">${hora}</div>
+                        </div>
+                    </div>
+                    
+                    <p style="font-size: 16px; margin-top: 15px; margin-bottom: 0; color: #4c51bf;">
+                        <i class="fas fa-map-marker-alt" style="margin-right: 8px;"></i>
+                        <strong>Lugar:</strong> Centro Jurídico Horizonte Legal, Sala de Audiencias 3
+                    </p>
+                </div>
+                
+                <!-- Confirmation -->
+                <div class="confirmation">
+                    <p style="font-size: 17px; margin: 0 0 15px 0; font-weight: 600; color: #2f855a;">
+                        <i class="fas fa-clipboard-check" style="margin-right: 10px;"></i> CONFIRMACIÓN REQUERIDA
+                    </p>
+                    <p style="font-size: 16px; margin-bottom: 20px;">
+                        Por favor, confirme su disponibilidad para la nueva fecha y hora respondiendo a este correo.
+                    </p>
+                    <a href="mailto:reprogramaciones@horizontelegal.com" style="display: inline-block; 
+                        background-color: #6c2bd9; 
+                        color: white; 
+                        padding: 12px 30px; 
+                        text-decoration: none;
+                        border-radius: 25px;
+                        font-weight: 600;
+                        font-size: 16px;
+                        margin-top: 10px;">
+                        <i class="fas fa-paper-plane" style="margin-right: 8px;"></i> Confirmar Disponibilidad
+                    </a>
+                    <p style="font-size: 14px; color: #718096; margin-top: 15px; margin-bottom: 0;">
+                        Si no puede asistir, contáctenos inmediatamente para buscar una nueva fecha
+                    </p>
+                </div>
+                
+                <!-- Additional Notes -->
+                <div style="background-color: #fffaf0; 
+                            border-left: 4px solid #ed8936; 
+                            padding: 20px;
+                            margin: 30px 0;
+                            border-radius: 0 8px 8px 0;">
+                    <p style="font-size: 17px; margin: 0 0 10px 0; font-weight: 600; color: #c05621;">
+                        <i class="fas fa-exclamation-triangle" style="margin-right: 10px;"></i> NOTA IMPORTANTE
+                    </p>
+                    <p style="margin: 0; font-size: 15px; color: #9c4221;">
+                        Si no recibimos confirmación de su parte dentro de las próximas 48 horas, asumiremos que está de acuerdo con la nueva fecha y hora programada.
+                    </p>
+                </div>
+                
+                <p style="font-size: 16px; margin-top: 20px; margin-bottom: 10px; color: #1a365d;">
+                    Lamentamos las molestias y agradecemos su comprensión,
+                </p>
+                
+                <div class="signature">
+                    <p style="font-size: 15px; color: #4a5568; margin: 0; font-weight: 500;">
+                        Departamento de Coordinación de Audiencias
+                    </p>
+                    <p style="font-size: 15px; color: #718096; margin: 5px 0 0 0;">
+                        Horizonte Legal
+                    </p>
+                    <p style="font-size: 14px; color: #4a5568; margin: 15px 0 0 0;">
+                        <i class="fas fa-phone-alt" style="margin-right: 8px;"></i> (+51) 123-4567 Ext. 108
+                    </p>
+                    <p style="font-size: 14px; color: #4a5568; margin: 5px 0 0 0;">
+                        <i class="fas fa-envelope" style="margin-right: 8px;"></i> reprogramaciones@horizontelegal.com
+                    </p>
+                </div>
+            </div>
+            
+            <!-- Footer -->
+            <div class="footer">
+                <p style="margin: 0; line-height: 1.5;">
+                    Este es un mensaje automático generado por el sistema. Por favor, no responda a este mensaje.<br>
+                    Para consultas sobre reprogramaciones: <a href="mailto:reprogramaciones@horizontelegal.com" style="color: #6c2bd9; text-decoration: none;">reprogramaciones@horizontelegal.com</a>
+                </p>
+                <p style="margin: 10px 0 0 0; font-size: 12px;">
+                    © ${new Date().getFullYear()} Horizonte Legal. Todos los derechos reservados.
+                </p>
+            </div>
+        </div>
+    </body>
+    </html>
+  `;
+}
+
 module.exports = {
   squemaEmailHtmlForgotPassword,
   esquemaEmailCitacionAudiencia,
-  esquemaEmailRecordatorioCitacionAudiencia
+  esquemaEmailRecordatorioCitacionAudiencia,
+  esquemaEamilReprogramacionDeCita
 }
